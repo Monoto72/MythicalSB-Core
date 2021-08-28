@@ -3,19 +3,19 @@ package com.monoto.mythicalsb.commands;
 import com.monoto.mythicalsb.classes.CropDrops;
 import com.monoto.mythicalsb.utils.TranslateColors;
 import me.kodysimpson.simpapi.command.SubCommand;
+import me.kodysimpson.simpapi.heads.SkullCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.Objects;
 
-public class GiveCommand extends SubCommand {
-
-
+public class SkullCommand extends SubCommand {
     @Override
     public String getName() {
-        return "give";
+        return "skull";
     }
 
     @Override
@@ -25,12 +25,12 @@ public class GiveCommand extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "Give a user a custom item.";
+        return "Give user a custom skull.";
     }
 
     @Override
     public String getSyntax() {
-        return "/myth give <name> <item>";
+        return "/myth skull <name>";
     }
 
     @Override
@@ -38,20 +38,14 @@ public class GiveCommand extends SubCommand {
         if (args.length > 1) {
             Player target = Bukkit.getServer().getPlayer(args[1]);
 
-            if (target == null) {
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou need to provide an online player!"));
-                return;
-            }
+            if (target == null) return;
 
-            try {
-                if (args[2] != null) {
-                    ItemStack customItem = CropDrops.getItemFromStringMap(args[2]);
-                    target.getInventory().addItem(customItem);
-                }
-            } catch (Exception e) {
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou did not provide an item!"));
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));
-            }
+            ItemStack playerSkull = SkullCreator.itemFromUuid(target.getUniqueId());
+            Objects.requireNonNull(playerSkull.getItemMeta()).setDisplayName(target.getDisplayName());
+
+            target.getInventory().addItem(playerSkull);
+
+
         } else if (args.length == 1) {
             sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou did not provide a name!"));
             sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));

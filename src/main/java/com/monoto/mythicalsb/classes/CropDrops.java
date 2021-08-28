@@ -20,7 +20,7 @@ public class CropDrops {
         cropToSeedMap.put(Material.NETHER_WART, Material.NETHER_WART);
 
         stringToItemMap.put("replanter", ItemManager.replanter);
-        stringToItemMap.put("harvester", ItemManager.tiller);
+        stringToItemMap.put("tiller", ItemManager.tiller);
     }
 
     public static Material getSeedFromCrop(Material crop) {

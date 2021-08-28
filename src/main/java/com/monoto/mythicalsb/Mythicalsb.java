@@ -1,6 +1,7 @@
 package com.monoto.mythicalsb;
 
 import com.monoto.mythicalsb.commands.GiveCommand;
+import com.monoto.mythicalsb.commands.SkullCommand;
 import com.monoto.mythicalsb.events.ReplanterEvents;
 import com.monoto.mythicalsb.events.TillerEvents;
 import com.monoto.mythicalsb.items.ItemManager;
@@ -27,12 +28,10 @@ public final class Mythicalsb extends JavaPlugin {
 
         try {
             CommandManager.createCoreCommand(this, "myth", "Handler for all MythicalSB-Core commands.", "/myth", (sender, subCommandList) -> {
-                sender.sendMessage(TranslateColors.chat("&f&m-------&r&f[&5&lMyth-Core&f]&f&m-------"));
-                subCommandList.forEach(subCommand -> {
-                        sender.sendMessage(TranslateColors.chat(subCommand.getSyntax() + " &5- &d" + subCommand.getDescription()));
-                });
-                sender.sendMessage(TranslateColors.chat("&f&m-------------------------"));
-            }, Collections.singletonList("give"), GiveCommand.class);
+                sender.sendMessage(TranslateColors.chat("&f&m-------------&r&f[&5&lMyth-Core&f]&f&m-------------"));
+                subCommandList.forEach(subCommand -> sender.sendMessage(TranslateColors.chat(subCommand.getSyntax() + " &5- &d" + subCommand.getDescription())));
+                sender.sendMessage(TranslateColors.chat("&f&m-------------------------------------"));
+            }, GiveCommand.class, SkullCommand.class);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
