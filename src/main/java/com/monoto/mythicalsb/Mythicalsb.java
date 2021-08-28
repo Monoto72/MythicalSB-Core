@@ -26,7 +26,7 @@ public final class Mythicalsb extends JavaPlugin {
         ItemManager.init();
 
         try {
-            CommandManager.createCoreCommand(this, "myth", "", "/myth", (sender, subCommandList) -> {
+            CommandManager.createCoreCommand(this, "myth", "Handler for all MythicalSB-Core commands.", "/myth", (sender, subCommandList) -> {
                 sender.sendMessage(TranslateColors.chat("&f&m-------&r&f[&5&lMyth-Core&f]&f&m-------"));
                 subCommandList.forEach(subCommand -> {
                         sender.sendMessage(TranslateColors.chat(subCommand.getSyntax() + " &5- &d" + subCommand.getDescription()));
