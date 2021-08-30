@@ -48,14 +48,10 @@ public class FarmersBootsEvents implements Listener {
         if (!player.getWorld().getName().equals(skyblockWorld)) return;
 
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getSuperiorSkyblock().getPlayers().getSuperiorPlayer(player);
-        player.sendMessage("1");
         if (superiorPlayer.getIsland() == null) return;
-        player.sendMessage("2");
         if (!(superiorPlayer.getIsland().isMember(superiorPlayer) || superiorPlayer.getIsland().isCoop(superiorPlayer))) return;
-        player.sendMessage("3");
 
         if (player.getInventory().getBoots() == null) return;
-        player.sendMessage("4");
 
         if (Objects.equals(player.getInventory().getBoots().getItemMeta(), ItemManager.farmersBoots.getItemMeta())) {
 
