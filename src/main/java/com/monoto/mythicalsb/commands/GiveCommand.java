@@ -1,7 +1,7 @@
 package com.monoto.mythicalsb.commands;
 
-import com.monoto.mythicalsb.classes.CropDrops;
-import com.monoto.mythicalsb.utils.TranslateColors;
+import com.monoto.mythicalsb.classes.RemapItems;
+import me.kodysimpson.simpapi.colors.ColorTranslator;
 import me.kodysimpson.simpapi.command.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -35,26 +35,34 @@ public class GiveCommand extends SubCommand {
 
     @Override
     public void perform(CommandSender sender, String[] args) {
+
+        if (!sender.hasPermission("mythcore.give")) {
+            sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &cYou don't have the correct permission to run this command!"));
+            return;
+        }
+
         if (args.length > 1) {
             Player target = Bukkit.getServer().getPlayer(args[1]);
 
             if (target == null) {
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou need to provide an online player!"));
+                sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &cYou need to provide an online player!"));
                 return;
             }
 
             try {
                 if (args[2] != null) {
-                    ItemStack customItem = CropDrops.getItemFromStringMap(args[2]);
+                    ItemStack customItem = RemapItems.getItemFromStringMap(args[2]);
                     target.getInventory().addItem(customItem);
+
                 }
             } catch (Exception e) {
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou did not provide an item!"));
-                sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));
+                sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &cYou did not provide an item!"));
+                sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));
             }
+
         } else if (args.length == 1) {
-            sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &cYou did not provide a name!"));
-            sender.sendMessage(TranslateColors.chat("&7[&5&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));
+            sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &cYou did not provide a name!"));
+            sender.sendMessage(ColorTranslator.translateColorCodes("&7[&#FF66FF&lMyth&7] &fCorrect syntax: &7/myth give <name> <item>"));
         }
     }
 

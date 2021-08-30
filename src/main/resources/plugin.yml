@@ -3,3 +3,5 @@ version: ${project.version}
 main: com.monoto.mythicalsb.Mythicalsb
 api-version: 1.17
 authors: [ Monoto ]
+
+depend: [SuperiorSkyblock]

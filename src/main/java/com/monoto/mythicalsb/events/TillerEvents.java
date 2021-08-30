@@ -1,8 +1,6 @@
 package com.monoto.mythicalsb.events;
 
-import com.monoto.mythicalsb.Mythicalsb;
 import com.monoto.mythicalsb.items.ItemManager;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -10,7 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Objects;
 
@@ -27,6 +24,7 @@ public class TillerEvents implements Listener {
                 switch (Objects.requireNonNull(event.getClickedBlock()).getType()) {
                     case GRASS_BLOCK:
                     case DIRT:
+                    case DIRT_PATH:
                         for (int x = -2; x <= 2; x++) {
                             for (int z = -2; z <= 2; z++) {
                                 Block block = player.getWorld().getBlockAt(
@@ -41,11 +39,12 @@ public class TillerEvents implements Listener {
                                         event.getClickedBlock().getZ() + z
                                 );
 
-                                if ((block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK) && airCheck.getType() == Material.AIR) {
+                                if ((block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK || block.getType() == Material.DIRT_PATH) && airCheck.getType() == Material.AIR) {
                                     block.setType(Material.FARMLAND);
                                 }
                             }
                         }
+
                 }
             }
         }

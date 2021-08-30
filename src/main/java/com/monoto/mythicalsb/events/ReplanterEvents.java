@@ -1,7 +1,7 @@
 package com.monoto.mythicalsb.events;
 
 import com.monoto.mythicalsb.Mythicalsb;
-import com.monoto.mythicalsb.classes.CropDrops;
+import com.monoto.mythicalsb.classes.RemapItems;
 import com.monoto.mythicalsb.items.ItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -24,7 +24,7 @@ public class ReplanterEvents implements Listener {
 
         Player player = event.getPlayer();
         Block block = event.getBlock();
-        Material seedType = CropDrops.getSeedFromCrop(event.getBlock().getType());
+        Material seedType = RemapItems.getSeedFromCrop(event.getBlock().getType());
 
         if (Objects.equals(player.getInventory().getItemInMainHand().getItemMeta(), ItemManager.replanter.getItemMeta())) {
 

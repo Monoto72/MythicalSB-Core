@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CropDrops {
+public class RemapItems {
 
     private static final Map<Material, Material> cropToSeedMap = new HashMap<>();
     private static final Map<String, ItemStack> stringToItemMap = new HashMap<>();
@@ -21,6 +21,7 @@ public class CropDrops {
 
         stringToItemMap.put("replanter", ItemManager.replanter);
         stringToItemMap.put("tiller", ItemManager.tiller);
+        stringToItemMap.put("farmers_boots", ItemManager.farmersBoots);
     }
 
     public static Material getSeedFromCrop(Material crop) {
